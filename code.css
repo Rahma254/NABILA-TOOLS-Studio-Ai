@@ -1,0 +1,105 @@
+/* Import Google Font jika tidak ingin melalui HTML */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+/* Variabel warna untuk kemudahan kustomisasi */
+:root {
+    --bg-dark: #111827; /* gray-900 */
+    --bg-light: #1f2937; /* gray-800 */
+    --border-color: #374151; /* gray-700 */
+    --text-primary: #f3f4f6; /* gray-200 */
+    --text-secondary: #9ca3af; /* gray-400 */
+    --accent-color: #a78bfa; /* purple-400 */
+    --accent-color-dark: #8b5cf6; /* purple-600 */
+    --premium-color: #facc15; /* yellow-400 */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+}
+
+/* Kustomisasi File Upload Button agar lebih rapi */
+.upload-area {
+    position: relative;
+}
+
+/* Processing Steps Styling */
+.step-item {
+    @apply flex-1 flex flex-col items-center p-4 bg-gray-700/50 rounded-lg transition-all duration-500 opacity-50;
+    transform: translateY(10px);
+}
+
+.step-item .icon-container {
+    @apply w-12 h-12 flex items-center justify-center bg-gray-600 rounded-full text-xl mb-2 transition-all duration-300;
+}
+
+.step-item .step-text {
+    @apply text-sm text-center text-gray-400 transition-all duration-300;
+}
+
+/* Status state untuk processing steps */
+.step-item.processing {
+    @apply opacity-100;
+    transform: translateY(0);
+}
+.step-item.processing .icon-container {
+    @apply bg-purple-600 text-white animate-pulse;
+}
+.step-item.processing .step-text {
+    @apply text-white font-semibold;
+}
+
+.step-item.completed {
+    @apply opacity-100;
+    transform: translateY(0);
+}
+.step-item.completed .icon-container {
+    @apply bg-green-500 text-white;
+}
+.step-item.completed .step-text {
+    @apply text-gray-300;
+}
+.step-item.completed .icon-container::after {
+    content: '✔';
+    font-size: 1.2rem;
+}
+.step-item.completed .icon-container > *:not(::after) {
+    display: none;
+}
+
+
+/* Result Card Styling */
+.result-card {
+    @apply bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-700;
+}
+
+.card-title {
+    @apply text-xl font-bold text-white mb-3;
+}
+
+.card-content-text {
+    @apply text-gray-300 whitespace-pre-wrap leading-relaxed; /* `whitespace-pre-wrap` penting untuk menjaga format puisi/narasi */
+}
+
+.card-actions {
+    @apply mt-4 flex flex-wrap gap-2;
+}
+
+.action-btn {
+    @apply bg-gray-700 text-sm text-gray-200 font-semibold py-2 px-4 rounded-md hover:bg-gray-600 transition-all duration-200 flex items-center gap-2;
+}
+
+.premium-badge {
+    @apply bg-yellow-400 text-yellow-900 text-xs font-bold ml-2 px-2 py-0.5 rounded-full;
+}
+
+/* Animasi untuk memunculkan elemen */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#results-section, #processing-section {
+    animation: fadeIn 0.8s ease-out forwards;
+}
